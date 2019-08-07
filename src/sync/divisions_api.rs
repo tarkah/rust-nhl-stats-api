@@ -28,12 +28,12 @@ impl DivisionsApiClient {
 }
 
 pub trait DivisionsApi {
-    fn get_division(&self, id: f32) -> Result<crate::models::Division, Error>;
+    fn get_division(&self, id: u32) -> Result<crate::models::Division, Error>;
     fn get_divisions(&self, ) -> Result<crate::models::Divisions, Error>;
 }
 
 impl DivisionsApi for DivisionsApiClient {
-    fn get_division(&self, id: f32) -> Result<crate::models::Division, Error> {
+    fn get_division(&self, id: u32) -> Result<crate::models::Division, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 

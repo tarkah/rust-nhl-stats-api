@@ -30,7 +30,7 @@ impl DraftApiClient {
 pub trait DraftApi {
     fn get_draft(&self, ) -> Result<crate::models::Draft, Error>;
     fn get_draft_by_year(&self, year: f32) -> Result<crate::models::Draft, Error>;
-    fn get_draft_prospect(&self, id: f32) -> Result<crate::models::DraftProspects, Error>;
+    fn get_draft_prospect(&self, id: u32) -> Result<crate::models::DraftProspects, Error>;
     fn get_draft_prospects(&self, ) -> Result<crate::models::DraftProspects, Error>;
 }
 
@@ -69,7 +69,7 @@ impl DraftApi for DraftApiClient {
         Ok(client.execute(req)?.error_for_status()?.json()?)
     }
 
-    fn get_draft_prospect(&self, id: f32) -> Result<crate::models::DraftProspects, Error> {
+    fn get_draft_prospect(&self, id: u32) -> Result<crate::models::DraftProspects, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 

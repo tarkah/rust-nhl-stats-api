@@ -28,12 +28,12 @@ impl ConferencesApiClient {
 }
 
 pub trait ConferencesApi {
-    fn get_conference(&self, id: f32) -> Result<crate::models::Division, Error>;
+    fn get_conference(&self, id: u32) -> Result<crate::models::Division, Error>;
     fn get_conferences(&self, ) -> Result<crate::models::Conferences, Error>;
 }
 
 impl ConferencesApi for ConferencesApiClient {
-    fn get_conference(&self, id: f32) -> Result<crate::models::Division, Error> {
+    fn get_conference(&self, id: u32) -> Result<crate::models::Division, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 

@@ -28,12 +28,12 @@ impl PlayersApiClient {
 }
 
 pub trait PlayersApi {
-    fn get_player(&self, id: f32) -> Result<crate::models::Players, Error>;
-    fn get_player_stats(&self, id: f32, stats: &str, season: &str) -> Result<crate::models::PlayerStats, Error>;
+    fn get_player(&self, id: u32) -> Result<crate::models::Players, Error>;
+    fn get_player_stats(&self, id: u32, stats: &str, season: &str) -> Result<crate::models::PlayerStats, Error>;
 }
 
 impl PlayersApi for PlayersApiClient {
-    fn get_player(&self, id: f32) -> Result<crate::models::Players, Error> {
+    fn get_player(&self, id: u32) -> Result<crate::models::Players, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -50,7 +50,7 @@ impl PlayersApi for PlayersApiClient {
         Ok(client.execute(req)?.error_for_status()?.json()?)
     }
 
-    fn get_player_stats(&self, id: f32, stats: &str, season: &str) -> Result<crate::models::PlayerStats, Error> {
+    fn get_player_stats(&self, id: u32, stats: &str, season: &str) -> Result<crate::models::PlayerStats, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 

@@ -31,13 +31,13 @@ impl<C: hyper::client::Connect> DivisionsApiClient<C> {
 }
 
 pub trait DivisionsApi {
-    fn get_division(&self, id: f32) -> Box<Future<Item = crate::models::Division, Error = Error<serde_json::Value>>>;
+    fn get_division(&self, id: u32) -> Box<Future<Item = crate::models::Division, Error = Error<serde_json::Value>>>;
     fn get_divisions(&self, ) -> Box<Future<Item = crate::models::Divisions, Error = Error<serde_json::Value>>>;
 }
 
 
 impl<C: hyper::client::Connect>DivisionsApi for DivisionsApiClient<C> {
-    fn get_division(&self, id: f32) -> Box<Future<Item = crate::models::Division, Error = Error<serde_json::Value>>> {
+    fn get_division(&self, id: u32) -> Box<Future<Item = crate::models::Division, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/divisions/{id}".to_string())
             .with_path_param("id".to_string(), id.to_string())
             .execute(self.configuration.borrow())

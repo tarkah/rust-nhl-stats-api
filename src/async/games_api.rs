@@ -31,33 +31,33 @@ impl<C: hyper::client::Connect> GamesApiClient<C> {
 }
 
 pub trait GamesApi {
-    fn get_game(&self, id: f32) -> Box<Future<Item = crate::models::Game, Error = Error<serde_json::Value>>>;
-    fn get_game_boxscore(&self, id: f32) -> Box<Future<Item = crate::models::GameBoxscores, Error = Error<serde_json::Value>>>;
-    fn get_game_content(&self, id: f32) -> Box<Future<Item = crate::models::GameContent, Error = Error<serde_json::Value>>>;
-    fn get_game_diff(&self, id: f32, start_time_code: &str) -> Box<Future<Item = crate::models::Game, Error = Error<serde_json::Value>>>;
+    fn get_game(&self, id: u32) -> Box<Future<Item = crate::models::Game, Error = Error<serde_json::Value>>>;
+    fn get_game_boxscore(&self, id: u32) -> Box<Future<Item = crate::models::GameBoxscores, Error = Error<serde_json::Value>>>;
+    fn get_game_content(&self, id: u32) -> Box<Future<Item = crate::models::GameContent, Error = Error<serde_json::Value>>>;
+    fn get_game_diff(&self, id: u32, start_time_code: &str) -> Box<Future<Item = crate::models::Game, Error = Error<serde_json::Value>>>;
 }
 
 
 impl<C: hyper::client::Connect>GamesApi for GamesApiClient<C> {
-    fn get_game(&self, id: f32) -> Box<Future<Item = crate::models::Game, Error = Error<serde_json::Value>>> {
+    fn get_game(&self, id: u32) -> Box<Future<Item = crate::models::Game, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/game/{id}/feed/live".to_string())
             .with_path_param("id".to_string(), id.to_string())
             .execute(self.configuration.borrow())
     }
 
-    fn get_game_boxscore(&self, id: f32) -> Box<Future<Item = crate::models::GameBoxscores, Error = Error<serde_json::Value>>> {
+    fn get_game_boxscore(&self, id: u32) -> Box<Future<Item = crate::models::GameBoxscores, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/game/{id}/boxscore".to_string())
             .with_path_param("id".to_string(), id.to_string())
             .execute(self.configuration.borrow())
     }
 
-    fn get_game_content(&self, id: f32) -> Box<Future<Item = crate::models::GameContent, Error = Error<serde_json::Value>>> {
+    fn get_game_content(&self, id: u32) -> Box<Future<Item = crate::models::GameContent, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/game/{id}/content".to_string())
             .with_path_param("id".to_string(), id.to_string())
             .execute(self.configuration.borrow())
     }
 
-    fn get_game_diff(&self, id: f32, start_time_code: &str) -> Box<Future<Item = crate::models::Game, Error = Error<serde_json::Value>>> {
+    fn get_game_diff(&self, id: u32, start_time_code: &str) -> Box<Future<Item = crate::models::Game, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/game/{id}/feed/live/diffPatch".to_string())
             .with_query_param("startTimeCode".to_string(), start_time_code.to_string())
             .with_path_param("id".to_string(), id.to_string())

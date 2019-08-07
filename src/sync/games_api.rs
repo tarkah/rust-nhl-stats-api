@@ -28,14 +28,14 @@ impl GamesApiClient {
 }
 
 pub trait GamesApi {
-    fn get_game(&self, id: f32) -> Result<crate::models::Game, Error>;
-    fn get_game_boxscore(&self, id: f32) -> Result<crate::models::GameBoxscores, Error>;
-    fn get_game_content(&self, id: f32) -> Result<crate::models::GameContent, Error>;
-    fn get_game_diff(&self, id: f32, start_time_code: &str) -> Result<crate::models::Game, Error>;
+    fn get_game(&self, id: u32) -> Result<crate::models::Game, Error>;
+    fn get_game_boxscore(&self, id: u32) -> Result<crate::models::GameBoxscores, Error>;
+    fn get_game_content(&self, id: u32) -> Result<crate::models::GameContent, Error>;
+    fn get_game_diff(&self, id: u32, start_time_code: &str) -> Result<crate::models::Game, Error>;
 }
 
 impl GamesApi for GamesApiClient {
-    fn get_game(&self, id: f32) -> Result<crate::models::Game, Error> {
+    fn get_game(&self, id: u32) -> Result<crate::models::Game, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -52,7 +52,7 @@ impl GamesApi for GamesApiClient {
         Ok(client.execute(req)?.error_for_status()?.json()?)
     }
 
-    fn get_game_boxscore(&self, id: f32) -> Result<crate::models::GameBoxscores, Error> {
+    fn get_game_boxscore(&self, id: u32) -> Result<crate::models::GameBoxscores, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -69,7 +69,7 @@ impl GamesApi for GamesApiClient {
         Ok(client.execute(req)?.error_for_status()?.json()?)
     }
 
-    fn get_game_content(&self, id: f32) -> Result<crate::models::GameContent, Error> {
+    fn get_game_content(&self, id: u32) -> Result<crate::models::GameContent, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -86,7 +86,7 @@ impl GamesApi for GamesApiClient {
         Ok(client.execute(req)?.error_for_status()?.json()?)
     }
 
-    fn get_game_diff(&self, id: f32, start_time_code: &str) -> Result<crate::models::Game, Error> {
+    fn get_game_diff(&self, id: u32, start_time_code: &str) -> Result<crate::models::Game, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 

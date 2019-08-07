@@ -31,13 +31,13 @@ impl<C: hyper::client::Connect> ConferencesApiClient<C> {
 }
 
 pub trait ConferencesApi {
-    fn get_conference(&self, id: f32) -> Box<Future<Item = crate::models::Division, Error = Error<serde_json::Value>>>;
+    fn get_conference(&self, id: u32) -> Box<Future<Item = crate::models::Division, Error = Error<serde_json::Value>>>;
     fn get_conferences(&self, ) -> Box<Future<Item = crate::models::Conferences, Error = Error<serde_json::Value>>>;
 }
 
 
 impl<C: hyper::client::Connect>ConferencesApi for ConferencesApiClient<C> {
-    fn get_conference(&self, id: f32) -> Box<Future<Item = crate::models::Division, Error = Error<serde_json::Value>>> {
+    fn get_conference(&self, id: u32) -> Box<Future<Item = crate::models::Division, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/conferences/{id}".to_string())
             .with_path_param("id".to_string(), id.to_string())
             .execute(self.configuration.borrow())

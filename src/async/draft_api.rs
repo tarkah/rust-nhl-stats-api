@@ -33,7 +33,7 @@ impl<C: hyper::client::Connect> DraftApiClient<C> {
 pub trait DraftApi {
     fn get_draft(&self, ) -> Box<Future<Item = crate::models::Draft, Error = Error<serde_json::Value>>>;
     fn get_draft_by_year(&self, year: f32) -> Box<Future<Item = crate::models::Draft, Error = Error<serde_json::Value>>>;
-    fn get_draft_prospect(&self, id: f32) -> Box<Future<Item = crate::models::DraftProspects, Error = Error<serde_json::Value>>>;
+    fn get_draft_prospect(&self, id: u32) -> Box<Future<Item = crate::models::DraftProspects, Error = Error<serde_json::Value>>>;
     fn get_draft_prospects(&self, ) -> Box<Future<Item = crate::models::DraftProspects, Error = Error<serde_json::Value>>>;
 }
 
@@ -50,7 +50,7 @@ impl<C: hyper::client::Connect>DraftApi for DraftApiClient<C> {
             .execute(self.configuration.borrow())
     }
 
-    fn get_draft_prospect(&self, id: f32) -> Box<Future<Item = crate::models::DraftProspects, Error = Error<serde_json::Value>>> {
+    fn get_draft_prospect(&self, id: u32) -> Box<Future<Item = crate::models::DraftProspects, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/draft/prospects/{id}".to_string())
             .with_path_param("id".to_string(), id.to_string())
             .execute(self.configuration.borrow())
