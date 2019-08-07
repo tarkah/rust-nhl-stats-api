@@ -687,7 +687,7 @@ components:
       properties:
         copyright:
           type: string
-        teams:
+        divisions:
           type: array
           items:
             type: object

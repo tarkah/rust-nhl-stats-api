@@ -14,15 +14,15 @@
 pub struct Divisions {
     #[serde(rename = "copyright", skip_serializing_if = "Option::is_none")]
     pub copyright: Option<String>,
-    #[serde(rename = "teams", skip_serializing_if = "Option::is_none")]
-    pub teams: Option<Vec<crate::models::Division>>,
+    #[serde(rename = "divisions", skip_serializing_if = "Option::is_none")]
+    pub divisions: Option<Vec<crate::models::Division>>,
 }
 
 impl Divisions {
     pub fn new() -> Divisions {
         Divisions {
             copyright: None,
-            teams: None,
+            divisions: None,
         }
     }
 }
