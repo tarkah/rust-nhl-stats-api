@@ -72,5 +72,7 @@ pub enum Type {
     PERIODSTART,
     #[serde(rename = "SHOT")]
     SHOT,
+    #[serde(rename = "BLOCKED_SHOT")]
+    BLOCKEDSHOT,
 }
 

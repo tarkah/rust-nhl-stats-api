@@ -1327,6 +1327,7 @@ components:
                           - "PERIOD_END"
                           - "PERIOD_START"
                           - "SHOT"
+                          - "BLOCKED_SHOT"
                       timeAbsolute:
                         type: string
                         format: date-time
