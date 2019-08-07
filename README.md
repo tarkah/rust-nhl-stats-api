@@ -1,12 +1,39 @@
 # NHL Stats API Client for Rust
+[![Crates.io](https://img.shields.io/crates/v/nhl-stats)](https://crates.io/crates/nhl-stats)
+[![](https://docs.rs/nhl-stats/badge.svg)](https://docs.rs/nhl-stats)
 
-Rust client for using the NHL Stats API. Generated using [OpenAPI Generator](https://openapi-generator.tech). 
+Rust client for using the NHL Stats API.
 
-Both `reqwest` and `hyper` clients are avaialable by deafault, and behind feature flags `sync` and `async`, respectively.
+- OpenAPI 3.0 spec provided by [erunion/sport-api-specifications/nhl](https://github.com/erunion/sport-api-specifications/tree/master/nhl)
+- Generated using [OpenAPI Generator](https://openapi-generator.tech)
+- More comprehensive documentation from [dword4/nhlapi/stats-api.md](https://gitlab.com/dword4/nhlapi/blob/master/stats-api.md)
+
+Both `reqwest` and `hyper` clients are avaialable by default, and behind feature flags `sync` and `async`, respectively.
+
+## Known Issues
+- Not all endpoints have been tested and there are likely deserialization errors. Please open an issue so I can manually fix.
+- Modifiers defined in the openapi spec are currently required within applicable ApiClient methods, only some allow passing blank values. Eventually I'll try to convert these over to Options for better usability.
 
 ## Example
 
+```rust
+use nhl_stats::sync::configuration::Configuration;
+use nhl_stats::sync::*;
+use std::rc::Rc;
 
+fn main() -> Result<(), Error> {
+    let config = Rc::from(Configuration::default());
+    let teams_client = TeamsApiClient::new(config);
+
+    // First parameter is expand={modifier}, this can be left blank
+    // Second parameter is season (both years included)
+    let teams = teams_client.get_teams("", "20192020")?;
+    for team in teams.teams.unwrap() {
+        println!("{:#?}", team);
+    }
+    Ok(())
+}
+```
 
 ## OpenAPI Generator
 
