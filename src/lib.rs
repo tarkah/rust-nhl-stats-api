@@ -5,11 +5,18 @@
 #[macro_use]
 extern crate serde_derive;
 
-extern crate futures;
-extern crate hyper;
 extern crate serde;
 extern crate serde_json;
 extern crate url;
+#[cfg(feature = "sync")]
+extern crate reqwest;
+#[cfg(feature = "async")]
+extern crate futures;
+#[cfg(feature = "async")]
+extern crate hyper;
 
-pub mod apis;
+#[cfg(feature = "sync")]
+pub mod sync;
+#[cfg(feature = "async")]
+pub mod async;
 pub mod models;
