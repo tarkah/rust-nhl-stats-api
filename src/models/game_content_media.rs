@@ -12,8 +12,8 @@
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 pub struct GameContentMedia {
-    #[serde(rename = "epg", skip_serializing_if = "Option::is_none")]
-    pub epg: Option<Vec<crate::models::AnyOfGameMediaNhltvGameMediaAudioGameHighlightType>>,
+    // #[serde(rename = "epg", skip_serializing_if = "Option::is_none")]
+    // pub epg: Option<Vec<crate::models::AnyOfGameMediaNhltvGameMediaAudioGameHighlightType>>,
     #[serde(rename = "milestones", skip_serializing_if = "Option::is_none")]
     pub milestones: Option<crate::models::GameContentMediaMilestones>,
 }
@@ -21,7 +21,7 @@ pub struct GameContentMedia {
 impl GameContentMedia {
     pub fn new() -> GameContentMedia {
         GameContentMedia {
-            epg: None,
+            // epg: None,
             milestones: None,
         }
     }
