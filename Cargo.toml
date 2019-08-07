@@ -1,8 +1,12 @@
 [package]
 name = "nhl-stats"
 version = "0.1.0"
-authors = ["Cory Forsstrom"]
-description = "NHL Stats API client for rust created using openapi-generator"
+authors = ["Cory Forsstrom <cforsstrom18@gmail.com>"]
+description = "NHL Stats API client for Rust created using openapi-generator"
+license = "MIT"
+repository = "https://github.com/tarkah/rust-nhl-stats-api"
+readme = "README.md"
+keywords = ["nhl", "api", "reqwest", "hyper", "openapi"]
 
 [features]
 default = ['sync', 'async']
@@ -19,7 +23,7 @@ hyper =  { version = "~0.11", optional = true }
 futures = { version = "0.1.23", optional = true }
 
 [dev-dependencies]
-tokio-core = "*"
+tokio-core = "0.1"
 
 [package.metadata.docs.rs]
 all-features = true
