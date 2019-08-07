@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **tri_code** | **String** |  | [optional] 
 **team_name** | **String** |  | [optional] 
 **location_name** | **String** |  | [optional] 
-**first_year_of_play** | **f32** |  | [optional] 
+**first_year_of_play** | **String** |  | [optional] 
 **division** | [***crate::models::StandingsDivision**](Standings_division.md) |  | [optional] 
 **conference** | [***crate::models::DivisionConference**](Division_conference.md) |  | [optional] 
 **franchise** | [***crate::models::Franchise**](Franchise.md) |  | [optional] 

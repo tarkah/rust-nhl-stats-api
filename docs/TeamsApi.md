@@ -23,7 +23,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **f32** | The ID of the team. | Required | 
 **expand** | **String** | Expand your response for some additional data. |  | 
-**season** | **f32** | Return a team's specific season. |  | 
+**season** | **String** | Return a team's specific season. |  | 
 
 ### Return type
 
@@ -52,7 +52,7 @@ Get an NHL team's roster.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **f32** | The ID of the team. | Required | 
-**season** | **f32** | Return a team's specific season. |  | 
+**season** | **String** | Return a team's specific season. |  | 
 
 ### Return type
 
@@ -109,7 +109,7 @@ Get all NHL teams.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **expand** | **String** | Expand your response for some additional data. |  | 
-**season** | **f32** | Return a team's specific season. |  | 
+**season** | **String** | Return a team's specific season. |  | 
 
 ### Return type
 

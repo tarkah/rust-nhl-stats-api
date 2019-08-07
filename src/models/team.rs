@@ -29,7 +29,7 @@ pub struct Team {
     #[serde(rename = "locationName", skip_serializing_if = "Option::is_none")]
     pub location_name: Option<String>,
     #[serde(rename = "firstYearOfPlay", skip_serializing_if = "Option::is_none")]
-    pub first_year_of_play: Option<f32>,
+    pub first_year_of_play: Option<String>,
     #[serde(rename = "division", skip_serializing_if = "Option::is_none")]
     pub division: Option<crate::models::StandingsDivision>,
     #[serde(rename = "conference", skip_serializing_if = "Option::is_none")]

@@ -594,9 +594,8 @@ components:
       description: Return a team's specific season.
       required: false
       schema:
-        type: number
-        pattern: ^\d{8}$
-        example: 20172018
+        type: string
+        example: "20172018"
     teamExpand:
       name: expand
       in: query
@@ -2780,8 +2779,8 @@ components:
           type: string
           example: "San Jose"
         firstYearOfPlay:
-          type: number
-          example: 1990
+          type: string
+          example: "1990"
         division:
           type: object
           properties:
