@@ -11,7 +11,7 @@ Rust client for using the NHL Stats API.
 Both `reqwest` and `hyper` clients are avaialable by default, and behind feature flags `sync` and `async`, respectively.
 
 ## Known Issues
-- Not all endpoints have been tested and there are likely deserialization errors. Please open an issue so I can manually fix.
+- The openapi spec being used isn't perfect, neither is the generator for Rust, so expect lots of problems and things that are just wrong. Please open issues so I can fix.
 - Modifiers defined in the openapi spec are currently required within applicable ApiClient methods, only some allow passing blank values. Eventually I'll try to convert these over to Options for better usability.
 
 ## Example
