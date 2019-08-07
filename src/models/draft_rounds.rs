@@ -15,7 +15,7 @@ pub struct DraftRounds {
     #[serde(rename = "roundNumber", skip_serializing_if = "Option::is_none")]
     pub round_number: Option<f32>,
     #[serde(rename = "round", skip_serializing_if = "Option::is_none")]
-    pub round: Option<f32>,
+    pub round: Option<String>,
     #[serde(rename = "picks", skip_serializing_if = "Option::is_none")]
     pub picks: Option<Vec<crate::models::DraftPicks>>,
 }

@@ -713,7 +713,7 @@ components:
                       type: number
                       example: 1
                     round:
-                      type: number
+                      type: string
                       example: "1"
                     picks:
                       type: array
