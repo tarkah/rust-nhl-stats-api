@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **time_on_ice** | **String** |  | [optional] 
-**assists** | **String** |  | [optional] 
+**assists** | **f32** |  | [optional] 
 **goals** | **f32** |  | [optional] 
 **pim** | **f32** |  | [optional] 
 **shots** | **f32** |  | [optional] 
@@ -13,9 +13,9 @@ Name | Type | Description | Notes
 **hits** | **f32** |  | [optional] 
 **power_play_goals** | **f32** |  | [optional] 
 **power_play_points** | **f32** |  | [optional] 
-**power_play_time_on_ice** | **f32** |  | [optional] 
-**even_time_on_ice** | **f32** |  | [optional] 
-**penalty_minutes** | **f32** |  | [optional] 
+**power_play_time_on_ice** | **String** |  | [optional] 
+**even_time_on_ice** | **String** |  | [optional] 
+**penalty_minutes** | **String** |  | [optional] 
 **face_off_pct** | **f64** |  | [optional] 
 **shot_pct** | **f32** |  | [optional] 
 **game_winning_goals** | **f32** |  | [optional] 

@@ -239,7 +239,7 @@ paths:
         - games
       parameters:
         - $ref: '#/components/parameters/gameId'
-        - name: startTimeCode
+        - name: startTimecode
           in: query
           required: true
           description: The prospect ID.
@@ -2138,7 +2138,7 @@ components:
                           type: string
                           example: "862:13"
                         assists:
-                          type: string
+                          type: number
                           example: 23
                         goals:
                           type: number
@@ -2162,13 +2162,13 @@ components:
                           type: number
                           example: 18
                         powerPlayTimeOnIce:
-                          type: number
+                          type: string
                           example: "168:28"
                         evenTimeOnIce:
-                          type: number
+                          type: string
                           example: "692:50"
                         penaltyMinutes:
-                          type: number
+                          type: string
                           example: "38"
                         faceOffPct:
                           type: number

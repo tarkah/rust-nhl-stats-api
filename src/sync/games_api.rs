@@ -31,7 +31,7 @@ pub trait GamesApi {
     fn get_game(&self, id: u32) -> Result<crate::models::Game, Error>;
     fn get_game_boxscore(&self, id: u32) -> Result<crate::models::GameBoxscores, Error>;
     fn get_game_content(&self, id: u32) -> Result<crate::models::GameContent, Error>;
-    fn get_game_diff(&self, id: u32, start_time_code: &str) -> Result<crate::models::Game, Error>;
+    fn get_game_diff(&self, id: u32, start_timecode: &str) -> Result<crate::models::Game, Error>;
 }
 
 impl GamesApi for GamesApiClient {
@@ -86,14 +86,14 @@ impl GamesApi for GamesApiClient {
         Ok(client.execute(req)?.error_for_status()?.json()?)
     }
 
-    fn get_game_diff(&self, id: u32, start_time_code: &str) -> Result<crate::models::Game, Error> {
+    fn get_game_diff(&self, id: u32, start_timecode: &str) -> Result<crate::models::Game, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/game/{id}/feed/live/diffPatch", configuration.base_path, id=id);
         let mut req_builder = client.get(uri_str.as_str());
 
-        req_builder = req_builder.query(&[("startTimeCode", &start_time_code.to_string())]);
+        req_builder = req_builder.query(&[("startTimecode", &start_timecode.to_string())]);
         if let Some(ref user_agent) = configuration.user_agent {
             req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
         }

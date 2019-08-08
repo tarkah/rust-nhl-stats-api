@@ -15,7 +15,7 @@ pub struct PlayerStatsStat {
     #[serde(rename = "timeOnIce", skip_serializing_if = "Option::is_none")]
     pub time_on_ice: Option<String>,
     #[serde(rename = "assists", skip_serializing_if = "Option::is_none")]
-    pub assists: Option<String>,
+    pub assists: Option<f32>,
     #[serde(rename = "goals", skip_serializing_if = "Option::is_none")]
     pub goals: Option<f32>,
     #[serde(rename = "pim", skip_serializing_if = "Option::is_none")]
@@ -31,11 +31,11 @@ pub struct PlayerStatsStat {
     #[serde(rename = "powerPlayPoints", skip_serializing_if = "Option::is_none")]
     pub power_play_points: Option<f32>,
     #[serde(rename = "powerPlayTimeOnIce", skip_serializing_if = "Option::is_none")]
-    pub power_play_time_on_ice: Option<f32>,
+    pub power_play_time_on_ice: Option<String>,
     #[serde(rename = "evenTimeOnIce", skip_serializing_if = "Option::is_none")]
-    pub even_time_on_ice: Option<f32>,
+    pub even_time_on_ice: Option<String>,
     #[serde(rename = "penaltyMinutes", skip_serializing_if = "Option::is_none")]
-    pub penalty_minutes: Option<f32>,
+    pub penalty_minutes: Option<String>,
     #[serde(rename = "faceOffPct", skip_serializing_if = "Option::is_none")]
     pub face_off_pct: Option<f64>,
     #[serde(rename = "shotPct", skip_serializing_if = "Option::is_none")]

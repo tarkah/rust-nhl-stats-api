@@ -101,7 +101,7 @@ No authorization required
 
 ## get_game_diff
 
-> crate::models::Game get_game_diff(id, start_time_code)
+> crate::models::Game get_game_diff(id, start_timecode)
 Get all available data for an NHL game after a specific time.
 
 You can use this to return a small subset of data relating to game.
@@ -112,7 +112,7 @@ You can use this to return a small subset of data relating to game.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **f32** | The ID of the game. The first 4 digits identify the season of the game (ie. 2017 for the 2017-2018 season). The next 2 digits give the type of game, where 01 = preseason, 02 = regular season, 03 = playoffs, 04 = all-star. The final 4 digits identify the specific game number. For regular season and preseason games, this ranges from 0001 to the number of games played. (1271 for seasons with 31 teams (2017 and onwards) and 1230 for seasons with 30 teams). For playoff games, the 2nd digit of the specific number gives the round of the playoffs, the 3rd digit specifies the matchup, and the 4th digit specifies the game (out of 7). | Required | 
-**start_time_code** | **String** | The prospect ID. | Required | 
+**start_timecode** | **String** | The prospect ID. | Required | 
 
 ### Return type
 
