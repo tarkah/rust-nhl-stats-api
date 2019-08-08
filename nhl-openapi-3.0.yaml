@@ -3042,91 +3042,102 @@ components:
                       type: object
                       properties:
                         gamesPlayed:
-                          type: number
-                          example: 55
+                          anyOf:
+                            type: integer
+                            type: string
                         wins:
-                          type: number
-                          example: 29
+                          anyOf:
+                            type: integer
+                            type: string
                         losses:
-                          type: number
-                          example: 18
+                          anyOf:
+                            type: integer
+                            type: string
                         ot:
-                          type: number
-                          example: 8
+                          anyOf:
+                            type: integer
+                            type: string
                         pts:
-                          type: number
-                          example: 66
+                          anyOf:
+                            type: integer
+                            type: string
                         ptPctg:
                           type: string
                           example: "60.0"
                         goalsPerGame:
-                          type: number
-                          format: float
-                          example: 2.891
+                          anyOf:
+                            type: float
+                            type: string
                         goalsAgainstPerGame:
-                          type: number
-                          format: float
-                          example: 2.745
+                          anyOf:
+                            type: float
+                            type: string
                         evGGARatio:
-                          type: number
-                          format: float
-                          example: 0.8532
+                          anyOf:
+                            type: float
+                            type: string
                         powerPlayPercentage:
                           type: string
                           example: "23.9"
                         powerPlayGoals:
-                          type: number
-                          example: 44
+                          anyOf:
+                            type: integer
+                            type: string
                         powerPlayGoalsAgainst:
-                          type: number
-                          example: 26
+                          anyOf:
+                            type: integer
+                            type: string
                         powerPlayOpportunities:
-                          type: number
-                          example: 184
+                          anyOf:
+                            type: integer
+                            type: string
                         penaltyKillPercentage:
                           type: string
                           example: "84.6"
                         shotsPerGame:
-                          type: number
-                          format: float
-                          example: 32.8
+                          anyOf:
+                            type: float
+                            type: string
                         shotsAllowed:
-                          type: number
-                          format: float
-                          example: 30.2182
+                          anyOf:
+                            type: float
+                            type: string
                         winScoreFirst:
-                          type: number
-                          format: float
-                          example: 0.679
+                          anyOf:
+                            type: float
+                            type: string
                         winOppScoreFirst:
-                          type: number
-                          format: float
-                          example: 0.37
+                          anyOf:
+                            type: float
+                            type: string
                         winLeadFirstPer:
-                          type: number
-                          format: float
-                          example: 0.85
+                          anyOf:
+                            type: float
+                            type: string
                         winLeadSecondPer:
-                          type: number
-                          format: float
-                          example: 0.952
+                          anyOf:
+                            type: float
+                            type: string
                         winOutshootOpp:
-                          type: number
-                          format: float
-                          example: 0.467
+                          anyOf:
+                            type: float
+                            type: string
                         winOutshotByOpp:
-                          type: number
-                          format: float
-                          example: 0.6
+                          anyOf:
+                            type: float
+                            type: string
                         faceOffsTaken:
-                          type: number
-                          example: 3300
+                          anyOf:
+                            type: integer
+                            type: string
                         faceOffsWon:
-                          type: number
-                          example: 1675
+                          anyOf:
+                            type: integer
+                            type: string
                         faceOffsLost:
-                          type: number
-                          example: 1625
+                          anyOf:
+                            type: integer
+                            type: string
                         faceOffWinPercentage:
                           type: string
                           example: "50.8"
@@ -3138,6 +3149,12 @@ components:
                           type: number
                           format: float
                           example: 0.909
+                        shootingPctRank:
+                          type: string
+                          example: "4th"
+                        savePctRank:
+                          type: string
+                          example: "4th"
                     team:
                       type: object
                       properties:
