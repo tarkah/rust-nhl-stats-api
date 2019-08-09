@@ -1,6 +1,6 @@
 [package]
 name = "nhl-stats"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Cory Forsstrom <cforsstrom18@gmail.com>"]
 description = "NHL Stats API client for Rust created using openapi-generator"
 license = "MIT"
