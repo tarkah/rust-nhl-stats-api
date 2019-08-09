@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## get_standing_types
 
-> Vec<serde_json::Value> get_standing_types()
+> crate::models::StandingTypes get_standing_types()
 Get all available NHL standing types.
 
 ### Parameters
@@ -21,7 +21,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Vec<serde_json::Value>**](serde_json::Value.md)
+[**crate::models::StandingTypes**](StandingTypes.md)
 
 ### Authorization
 
@@ -66,7 +66,7 @@ No authorization required
 
 ## get_standings_by_type
 
-> crate::models::Standings get_standings_by_type(_type)
+> crate::models::Standings get_standings_by_type(_type, date, season)
 Get NHL standings for a specific standing type.
 
 ### Parameters
@@ -74,7 +74,9 @@ Get NHL standings for a specific standing type.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**_type** | **String** | Standing types:   * `byConference` - Standings by Conference   * `byDivision` - Standings by Division   * `byLeague` - Standings by League   * `divisionLeaders` - Division Leader standings   * `postseason` - Postseason Standings   * `preseason` - Preseason Standings   * `regularSeason` - Regular Season Standings   * `wildCard` - Wild card standings   * `wildCardWithLeaders` - Wild card standings with Division Leaders  | Required | 
+**_type** | [**crate::models::EnumStandingTypes**](.md) | Standing types:   * `byConference` - Standings by Conference   * `byDivision` - Standings by Division   * `byLeague` - Standings by League   * `divisionLeaders` - Division Leader standings   * `postseason` - Postseason Standings   * `preseason` - Preseason Standings   * `regularSeason` - Regular Season Standings   * `wildCard` - Wild card standings   * `wildCardWithLeaders` - Wild card standings with Division Leaders  | Required | 
+**date** | **String** | Standings on a specified date. |  | 
+**season** | **String** | Standings for a specified season. |  | 
 
 ### Return type
 

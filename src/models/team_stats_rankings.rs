@@ -11,72 +11,68 @@
 
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
-pub struct TeamStatsStat {
+pub struct TeamStatsRankings {
     #[serde(rename = "gamesPlayed", skip_serializing_if = "Option::is_none")]
-    pub games_played: Option<serde_json::Value>,
+    pub games_played: Option<String>,
     #[serde(rename = "wins", skip_serializing_if = "Option::is_none")]
-    pub wins: Option<serde_json::Value>,
+    pub wins: Option<String>,
     #[serde(rename = "losses", skip_serializing_if = "Option::is_none")]
-    pub losses: Option<serde_json::Value>,
+    pub losses: Option<String>,
     #[serde(rename = "ot", skip_serializing_if = "Option::is_none")]
-    pub ot: Option<serde_json::Value>,
+    pub ot: Option<String>,
     #[serde(rename = "pts", skip_serializing_if = "Option::is_none")]
-    pub pts: Option<serde_json::Value>,
+    pub pts: Option<String>,
     #[serde(rename = "ptPctg", skip_serializing_if = "Option::is_none")]
     pub pt_pctg: Option<String>,
     #[serde(rename = "goalsPerGame", skip_serializing_if = "Option::is_none")]
-    pub goals_per_game: Option<serde_json::Value>,
+    pub goals_per_game: Option<String>,
     #[serde(rename = "goalsAgainstPerGame", skip_serializing_if = "Option::is_none")]
-    pub goals_against_per_game: Option<serde_json::Value>,
+    pub goals_against_per_game: Option<String>,
     #[serde(rename = "evGGARatio", skip_serializing_if = "Option::is_none")]
-    pub ev_gga_ratio: Option<serde_json::Value>,
+    pub ev_gga_ratio: Option<String>,
     #[serde(rename = "powerPlayPercentage", skip_serializing_if = "Option::is_none")]
     pub power_play_percentage: Option<String>,
     #[serde(rename = "powerPlayGoals", skip_serializing_if = "Option::is_none")]
-    pub power_play_goals: Option<serde_json::Value>,
+    pub power_play_goals: Option<String>,
     #[serde(rename = "powerPlayGoalsAgainst", skip_serializing_if = "Option::is_none")]
-    pub power_play_goals_against: Option<serde_json::Value>,
+    pub power_play_goals_against: Option<String>,
     #[serde(rename = "powerPlayOpportunities", skip_serializing_if = "Option::is_none")]
-    pub power_play_opportunities: Option<serde_json::Value>,
+    pub power_play_opportunities: Option<String>,
     #[serde(rename = "penaltyKillPercentage", skip_serializing_if = "Option::is_none")]
     pub penalty_kill_percentage: Option<String>,
     #[serde(rename = "shotsPerGame", skip_serializing_if = "Option::is_none")]
-    pub shots_per_game: Option<serde_json::Value>,
+    pub shots_per_game: Option<String>,
     #[serde(rename = "shotsAllowed", skip_serializing_if = "Option::is_none")]
-    pub shots_allowed: Option<serde_json::Value>,
+    pub shots_allowed: Option<String>,
     #[serde(rename = "winScoreFirst", skip_serializing_if = "Option::is_none")]
-    pub win_score_first: Option<serde_json::Value>,
+    pub win_score_first: Option<String>,
     #[serde(rename = "winOppScoreFirst", skip_serializing_if = "Option::is_none")]
-    pub win_opp_score_first: Option<serde_json::Value>,
+    pub win_opp_score_first: Option<String>,
     #[serde(rename = "winLeadFirstPer", skip_serializing_if = "Option::is_none")]
-    pub win_lead_first_per: Option<serde_json::Value>,
+    pub win_lead_first_per: Option<String>,
     #[serde(rename = "winLeadSecondPer", skip_serializing_if = "Option::is_none")]
-    pub win_lead_second_per: Option<serde_json::Value>,
+    pub win_lead_second_per: Option<String>,
     #[serde(rename = "winOutshootOpp", skip_serializing_if = "Option::is_none")]
-    pub win_outshoot_opp: Option<serde_json::Value>,
+    pub win_outshoot_opp: Option<String>,
     #[serde(rename = "winOutshotByOpp", skip_serializing_if = "Option::is_none")]
-    pub win_outshot_by_opp: Option<serde_json::Value>,
+    pub win_outshot_by_opp: Option<String>,
     #[serde(rename = "faceOffsTaken", skip_serializing_if = "Option::is_none")]
-    pub face_offs_taken: Option<serde_json::Value>,
+    pub face_offs_taken: Option<String>,
     #[serde(rename = "faceOffsWon", skip_serializing_if = "Option::is_none")]
-    pub face_offs_won: Option<serde_json::Value>,
+    pub face_offs_won: Option<String>,
     #[serde(rename = "faceOffsLost", skip_serializing_if = "Option::is_none")]
-    pub face_offs_lost: Option<serde_json::Value>,
+    pub face_offs_lost: Option<String>,
     #[serde(rename = "faceOffWinPercentage", skip_serializing_if = "Option::is_none")]
     pub face_off_win_percentage: Option<String>,
-    #[serde(rename = "shootingPctg", skip_serializing_if = "Option::is_none")]
-    pub shooting_pctg: Option<f32>,
-    #[serde(rename = "savePctg", skip_serializing_if = "Option::is_none")]
-    pub save_pctg: Option<f32>,
     #[serde(rename = "shootingPctRank", skip_serializing_if = "Option::is_none")]
     pub shooting_pct_rank: Option<String>,
     #[serde(rename = "savePctRank", skip_serializing_if = "Option::is_none")]
     pub save_pct_rank: Option<String>,
 }
 
-impl TeamStatsStat {
-    pub fn new() -> TeamStatsStat {
-        TeamStatsStat {
+impl TeamStatsRankings {
+    pub fn new() -> TeamStatsRankings {
+        TeamStatsRankings {
             games_played: None,
             wins: None,
             losses: None,
@@ -103,8 +99,6 @@ impl TeamStatsStat {
             face_offs_won: None,
             face_offs_lost: None,
             face_off_win_percentage: None,
-            shooting_pctg: None,
-            save_pctg: None,
             shooting_pct_rank: None,
             save_pct_rank: None,
         }

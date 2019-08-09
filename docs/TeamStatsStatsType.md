@@ -1,10 +1,10 @@
-# PlayerStatsType
+# TeamStatsStatsType
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**display_name** | **String** |  | [optional] 
+**display_name** | [***crate::models::EnumStatTypes**](EnumStatTypes.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

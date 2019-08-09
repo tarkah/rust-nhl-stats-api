@@ -15,7 +15,7 @@ pub struct TeamStats {
     #[serde(rename = "copyright", skip_serializing_if = "Option::is_none")]
     pub copyright: Option<String>,
     #[serde(rename = "stats", skip_serializing_if = "Option::is_none")]
-    pub stats: Option<Vec<crate::models::TeamStatsStats>>,
+    pub stats: Option<crate::models::TeamStatsStats>,
 }
 
 impl TeamStats {

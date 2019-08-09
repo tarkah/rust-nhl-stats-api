@@ -13,7 +13,7 @@
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 pub struct StandingsRecords {
     #[serde(rename = "standingsType", skip_serializing_if = "Option::is_none")]
-    pub standings_type: Option<StandingsType>,
+    pub standings_type: Option<crate::models::EnumStandingTypes>,
     #[serde(rename = "league", skip_serializing_if = "Option::is_none")]
     pub league: Option<crate::models::StandingsLeague>,
     #[serde(rename = "division", skip_serializing_if = "Option::is_none")]
@@ -36,10 +36,4 @@ impl StandingsRecords {
     }
 }
 
-/// 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-pub enum StandingsType {
-    #[serde(rename = "regularSeason")]
-    RegularSeason,
-}
 

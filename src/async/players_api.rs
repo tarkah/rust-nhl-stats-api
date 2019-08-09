@@ -32,7 +32,7 @@ impl<C: hyper::client::Connect> PlayersApiClient<C> {
 
 pub trait PlayersApi {
     fn get_player(&self, id: u32) -> Box<Future<Item = crate::models::Players, Error = Error<serde_json::Value>>>;
-    fn get_player_stats(&self, id: u32, stats: &str, season: &str) -> Box<Future<Item = crate::models::PlayerStats, Error = Error<serde_json::Value>>>;
+    fn get_player_stats(&self, id: u32, stats: crate::models::EnumStatTypes, season: &str) -> Box<Future<Item = crate::models::PlayerStats, Error = Error<serde_json::Value>>>;
 }
 
 
@@ -43,7 +43,7 @@ impl<C: hyper::client::Connect>PlayersApi for PlayersApiClient<C> {
             .execute(self.configuration.borrow())
     }
 
-    fn get_player_stats(&self, id: u32, stats: &str, season: &str) -> Box<Future<Item = crate::models::PlayerStats, Error = Error<serde_json::Value>>> {
+    fn get_player_stats(&self, id: u32, stats: crate::models::EnumStatTypes, season: &str) -> Box<Future<Item = crate::models::PlayerStats, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/people/{id}/stats".to_string())
             .with_query_param("stats".to_string(), stats.to_string())
             .with_query_param("season".to_string(), season.to_string())

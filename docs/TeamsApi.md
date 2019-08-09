@@ -22,7 +22,7 @@ Get an NHL team.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **f32** | The ID of the team. | Required | 
-**expand** | **String** | Expand your response for some additional data. |  | 
+**expand** | [**crate::models::EnumExpandTeams**](.md) | Expand explanations:   * `team.roster` - Shows roster of active players for the specified team.   * `person.names` - Same as above, but gives less info.   * `team.schedule.next` - Returns details of the upcoming game for a team.   * `team.schedule.previous` - Same as above but for the last game played.   * `team.stats` - Returns the teams stats for the season.  |  | 
 **season** | **String** | Return a team's specific season. |  | 
 
 ### Return type
@@ -108,7 +108,7 @@ Get all NHL teams.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**expand** | **String** | Expand your response for some additional data. |  | 
+**expand** | [**crate::models::EnumExpandTeams**](.md) | Expand explanations:   * `team.roster` - Shows roster of active players for the specified team.   * `person.names` - Same as above, but gives less info.   * `team.schedule.next` - Returns details of the upcoming game for a team.   * `team.schedule.previous` - Same as above but for the last game played.   * `team.stats` - Returns the teams stats for the season.  |  | 
 **season** | **String** | Return a team's specific season. |  | 
 
 ### Return type

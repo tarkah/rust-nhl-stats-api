@@ -31,12 +31,12 @@ impl<C: hyper::client::Connect> ScheduleApiClient<C> {
 }
 
 pub trait ScheduleApi {
-    fn get_schedule(&self, expand: &str, team_id: &str, start_date: String, end_date: String) -> Box<Future<Item = crate::models::Schedule, Error = Error<serde_json::Value>>>;
+    fn get_schedule(&self, expand: crate::models::EnumExpandSchedule, team_id: &str, start_date: String, end_date: String) -> Box<Future<Item = crate::models::Schedule, Error = Error<serde_json::Value>>>;
 }
 
 
 impl<C: hyper::client::Connect>ScheduleApi for ScheduleApiClient<C> {
-    fn get_schedule(&self, expand: &str, team_id: &str, start_date: String, end_date: String) -> Box<Future<Item = crate::models::Schedule, Error = Error<serde_json::Value>>> {
+    fn get_schedule(&self, expand: crate::models::EnumExpandSchedule, team_id: &str, start_date: String, end_date: String) -> Box<Future<Item = crate::models::Schedule, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/schedule".to_string())
             .with_query_param("expand".to_string(), expand.to_string())
             .with_query_param("teamId".to_string(), team_id.to_string())

@@ -1,11 +1,11 @@
-# TeamNextGameScheduleTeams
+# TeamStatsStatsRecords
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**away** | [***crate::models::TeamNextGameScheduleTeamsAway**](Team_nextGameSchedule_teams_away.md) |  | [optional] 
-**home** | [***crate::models::TeamNextGameScheduleTeamsHome**](Team_nextGameSchedule_teams_home.md) |  | [optional] 
+**_type** | [***crate::models::TeamStatsStatsType**](TeamStatsStats_type.md) |  | [optional] 
+**splits** | [**Vec<crate::models::TeamStatsStatsSplits>**](TeamStatsStats_splits.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

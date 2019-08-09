@@ -11,14 +11,14 @@
 
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
-pub struct TeamStatsType {
+pub struct TeamStatsStatsType {
     #[serde(rename = "displayName", skip_serializing_if = "Option::is_none")]
-    pub display_name: Option<String>,
+    pub display_name: Option<crate::models::EnumStatTypes>,
 }
 
-impl TeamStatsType {
-    pub fn new() -> TeamStatsType {
-        TeamStatsType {
+impl TeamStatsStatsType {
+    pub fn new() -> TeamStatsStatsType {
+        TeamStatsStatsType {
             display_name: None,
         }
     }

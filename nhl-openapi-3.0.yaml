@@ -285,19 +285,7 @@ paths:
           in: query
           required: true
           schema:
-            type: string
-            enum:
-              - "homeAndAway"
-              - "byDayOfWeek"
-              - "byMonth"
-              - "goalsByGameSituation"
-              - "onPaceRegularSeason"
-              - "regularSeasonStatRankings"
-              - "statsSingleSeason"
-              - "vsConference"
-              - "vsDivision"
-              - "vsTeam"
-              - "winLoss"
+            $ref: "#/components/schemas/EnumStatTypes"
           description: >
             Stats explanations:
               * `homeAndAway` - Provides a split between home and away games.
@@ -311,6 +299,24 @@ paths:
               * `vsDivision` - Division stats split.
               * `vsTeam` - Conference stats split.
               * `winLoss` - Very similar to the previous modifier except it provides the W/L/OT split instead of Home and Away.
+              * `byDayOfWeekPlayoffs`
+              * `byMonthPlayoffs`
+              * `careerPlayoffs`
+              * `careerRegularSeason`
+              * `gameLog`
+              * `goalsByGameSituationPlayoffs`
+              * `homeAndAwayPlayoffs`
+              * `playoffGameLog`
+              * `playoffStatRankings`
+              * `statsSingleSeasonPlayoffs`
+              * `vsConferencePlayoffs`
+              * `vsDivisionPlayoffs`
+              * `vsTeamPlayoffs`
+              * `winLossPlayoffs`
+              * `yearByYear`
+              * `yearByYearPlayoffs`
+              * `yearByYearPlayoffsRank`
+              * `yearByYearRank`
         - $ref: '#/components/parameters/season'
       responses:
         200:
@@ -328,22 +334,7 @@ paths:
       tags:
         - schedule
       parameters:
-        - name: expand
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - "schedule.brodcasts"
-              - "schedule.linescore"
-              - "schedule.ticket"
-              - "team.schedule.previous"
-          description: >
-            Expand explanations:
-              * `schedule.brodcasts` - Shows the broadcasts of the game.
-              * `schedule.linescore` - Linescore for completed games.
-              * `schedule.ticket` - Provides the different places to buy tickets for the upcoming games.
-              * `team.schedule.previous` - Same as above but for the last game played.
+        - $ref: "#/components/parameters/scheduleExpand"
         - name: teamId
           in: query
           required: false
@@ -419,17 +410,7 @@ paths:
           in: path
           required: true
           schema:
-            type: string
-            enum:
-              - "byConference"
-              - "byDivision"
-              - "byLeague"
-              - "divisionLeaders"
-              - "postseason"
-              - "preseason"
-              - "regularSeason"
-              - "wildCard"
-              - "wildCardWithLeaders"
+            $ref: "#/components/schemas/EnumStandingTypes"
           description: >
             Standing types:
               * `byConference` - Standings by Conference
@@ -441,6 +422,22 @@ paths:
               * `regularSeason` - Regular Season Standings
               * `wildCard` - Wild card standings
               * `wildCardWithLeaders` - Wild card standings with Division Leaders
+        - name: date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+            example: "2018-01-09"
+          description: "Standings on a specified date."
+        - name: season
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+            example: "20032004"
+          description: "Standings for a specified season."
       responses:
         200:
           description: OK
@@ -599,14 +596,27 @@ components:
     teamExpand:
       name: expand
       in: query
-      description: Expand your response for some additional data.
+      description: >
+        Expand explanations:
+          * `team.roster` - Shows roster of active players for the specified team.
+          * `person.names` - Same as above, but gives less info.
+          * `team.schedule.next` - Returns details of the upcoming game for a team.
+          * `team.schedule.previous` - Same as above but for the last game played.
+          * `team.stats` - Returns the teams stats for the season.
       required: false
       schema:
-        type: string
-        enum:
-          - "team.roster"
-          - "team.schedule.next"
-          - "team.schedule.previous"
+        $ref: "#/components/schemas/EnumExpandTeams"
+    scheduleExpand:
+      name: expand
+      in: query
+      description: >
+        Expand explanations:
+          * `schedule.brodcasts` - Shows the broadcasts of the game.
+          * `schedule.linescore` - Linescore for completed games.
+          * `schedule.ticket` - Provides the different places to buy tickets for the upcoming games.
+      required: false
+      schema:
+        $ref: "#/components/schemas/EnumExpandSchedule"
   responses:
     Error:
       description: Error
@@ -2107,22 +2117,7 @@ components:
             type: object
             properties:
               type:
-                type: object
-                properties:
-                  displayName:
-                    type: string
-                    enum:
-                      - "byDayOfWeek"
-                      - "byMonth"
-                      - "goalsByGameSituation"
-                      - "homeAndAway"
-                      - "onPaceRegularSeason"
-                      - "regularSeasonStatRankings"
-                      - "statsSingleSeason"
-                      - "vsConference"
-                      - "vsDivision"
-                      - "vsTeam"
-                      - "winLoss"
+                $ref: "#/components/schemas/StatType"
               splits:
                 type: array
                 items:
@@ -2350,8 +2345,8 @@ components:
               format: uri
               example: "/api/v1/people/8466138"
         jerseyNumber:
-          type: number
-          example: 19
+          type: string
+          example: "19"
         position:
           type: object
           properties:
@@ -2589,9 +2584,7 @@ components:
             type: object
             properties:
               standingsType:
-                type: string
-                enum:
-                  - "regularSeason"
+                $ref: "#/components/schemas/EnumStandingTypes"
               league:
                 type: object
                 properties:
@@ -2707,52 +2700,86 @@ components:
                       type: string
                       format: date-time
                       example: "2018-02-11T00:57:18Z"
+    EnumExpandTeams:
+      type: string
+      enum:
+        - "team.roster"
+        - "person.names"
+        - "team.schedule.next"
+        - "team.schedule.previous"
+        - "team.stats"
+    EnumExpandSchedule:
+      type: string
+      enum:
+        - "schedule.broadcasts"
+        - "schedule.linescore"
+        - "schedule.ticket"
+    EnumStatTypes:
+      type: string
+      enum:
+        - "byDayOfWeek"
+        - "byDayOfWeekPlayoffs"
+        - "byMonth"
+        - "byMonthPlayoffs"
+        - "careerPlayoffs"
+        - "careerRegularSeason"
+        - "gameLog"
+        - "goalsByGameSituation"
+        - "goalsByGameSituationPlayoffs"
+        - "homeAndAway"
+        - "homeAndAwayPlayoffs"
+        - "onPaceRegularSeason"
+        - "playoffGameLog"
+        - "playoffStatRankings"
+        - "regularSeasonStatRankings"
+        - "statsSingleSeason"
+        - "statsSingleSeasonPlayoffs"
+        - "vsConference"
+        - "vsConferencePlayoffs"
+        - "vsDivision"
+        - "vsDivisionPlayoffs"
+        - "vsTeam"
+        - "vsTeamPlayoffs"
+        - "winLoss"
+        - "winLossPlayoffs"
+        - "yearByYear"
+        - "yearByYearPlayoffs"
+        - "yearByYearPlayoffsRank"
+        - "yearByYearRank"
+    EnumStandingTypes:
+      type: string
+      enum:
+        - "byConference"
+        - "byDivision"
+        - "byLeague"
+        - "divisionLeaders"
+        - "postseason"
+        - "preseason"
+        - "regularSeason"
+        - "wildCard"
+        - "wildCardWithLeaders"
     StandingTypes:
-      items:
-        type: object
-        properties:
-          name:
-            type: string
-            example: "regularSeason"
-          description:
-            type: string
-            example: "Regular Season Standings"
+      properties:
+        records:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                $ref: "#/components/schemas/EnumStandingTypes"
+              description:
+                type: string
+                example: "Regular Season Standings"
     StatTypes:
-      items:
-        type: object
-        properties:
-          displayName:
-            type: string
-            enum:
-              - "byDayOfWeek"
-              - "byDayOfWeekPlayoffs"
-              - "byMonth"
-              - "byMonthPlayoffs"
-              - "careerPlayoffs"
-              - "careerRegularSeason"
-              - "gameLog"
-              - "goalsByGameSituation"
-              - "goalsByGameSituationPlayoffs"
-              - "homeAndAway"
-              - "homeAndAwayPlayoffs"
-              - "onPaceRegularSeason"
-              - "playoffGameLog"
-              - "playoffStatRankings"
-              - "regularSeasonStatRankings"
-              - "statsSingleSeason"
-              - "statsSingleSeasonPlayoffs"
-              - "vsConference"
-              - "vsConferencePlayoffs"
-              - "vsDivision"
-              - "vsDivisionPlayoffs"
-              - "vsTeam"
-              - "vsTeamPlayoffs"
-              - "winLoss"
-              - "winLossPlayoffs"
-              - "yearByYear"
-              - "yearByYearPlayoffs"
-              - "yearByYearPlayoffsRank"
-              - "yearByYearRank"
+      properties:
+        records:
+          type: array
+          items:
+            $ref: "#/components/schemas/StatType"
+    StatType:
+      properties:
+        displayName:
+          $ref: "#/components/schemas/EnumStatTypes"
     Team:
       properties:
         id:
@@ -2817,186 +2844,12 @@ components:
               type: array
               items:
                 $ref: "#/components/schemas/Roster"
+        teamStats:
+          $ref: "#/components/schemas/TeamStatsStats"
+        previousGameSchedule:
+          $ref: "#/components/schemas/Schedule"
         nextGameSchedule:
-          type: object
-          properties:
-            totalItems:
-              type: number
-              example: 1
-            totalEvents:
-              type: number
-              example: 0
-            totalGames:
-              type: number
-              example: 1
-            totalMatches:
-              type: number
-              example: 0
-            dates:
-              type: array
-              items:
-                type: object
-                properties:
-                  date:
-                    type: string
-                    format: date
-                    example: "2018-02-10"
-                  totalItems:
-                    type: number
-                    example: 1
-                  totalEvents:
-                    type: number
-                    example: 0
-                  totalGames:
-                    type: number
-                    example: 1
-                  totalMatches:
-                    type: number
-                    example: 0
-                  games:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        gamePk:
-                          type: number
-                          example: 2017020851
-                        link:
-                          type: string
-                          format: uri
-                          example: "/api/v1/game/2017020851/feed/live"
-                        gameType:
-                          type: string
-                          example: "R"
-                        season:
-                          type: string
-                          example: "20172018"
-                        gameDate:
-                          type: string
-                          format: date-time
-                          example: "2018-02-11T03:00:00Z"
-                        status:
-                          type: object
-                          properties:
-                            abstractGameState:
-                              type: string
-                              enum:
-                                - "Live"
-                                - "Preview"
-                            codedGameState:
-                              type: string
-                              enum:
-                                - "2"
-                                - "3"
-                              example: "3"
-                            detailedState:
-                              type: string
-                              enum:
-                                - "In Progress"
-                                - "Pre-Game"
-                            statusCode:
-                              type: string
-                              enum:
-                                - "2"
-                                - "3"
-                            startTimeTBD:
-                              type: boolean
-                        teams:
-                          type: object
-                          properties:
-                            away:
-                              type: object
-                              properties:
-                                leagueRecord:
-                                  type: object
-                                  properties:
-                                    wins:
-                                      type: number
-                                      example: 23
-                                    losses:
-                                      type: number
-                                      example: 26
-                                    ot:
-                                      type: number
-                                      example: 4
-                                    type:
-                                      type: string
-                                      example: "league"
-                                score:
-                                  type: number
-                                  example: 0
-                                team:
-                                  type: object
-                                  properties:
-                                    id:
-                                      type: number
-                                      example: 22
-                                    name:
-                                      type: string
-                                      example: "Edmonton Oilers"
-                                    link:
-                                      type: string
-                                      format: uri
-                                      example: "/api/v1/teams/22"
-                            home:
-                              type: object
-                              properties:
-                                leagueRecord:
-                                  type: object
-                                  properties:
-                                    wins:
-                                      type: number
-                                      example: 28
-                                    losses:
-                                      type: number
-                                      example: 18
-                                    ot:
-                                      type: number
-                                      example: 8
-                                    type:
-                                      type: string
-                                      example: "league"
-                                score:
-                                  type: number
-                                  example: 2
-                                team:
-                                  type: object
-                                  properties:
-                                    id:
-                                      type: number
-                                      example: 28
-                                    name:
-                                      type: string
-                                      example: "San Jose Sharks"
-                                    link:
-                                      type: string
-                                      format: uri
-                                      example: "/api/v1/teams/28"
-                        venue:
-                          type: object
-                          properties:
-                            name:
-                              type: string
-                              example: "SAP Center at San Jose"
-                            link:
-                              type: string
-                              format: uri
-                              example: "/api/v1/venues/null"
-                        content:
-                          type: object
-                          properties:
-                            link:
-                              type: string
-                              format: uri
-                              example: "/api/v1/game/2017020851/content"
-                  events:
-                    type: array
-                    items:
-                      type: object
-                  matches:
-                    type: array
-                    items:
-                      type: object
+          $ref: "#/components/schemas/Schedule"
         shortName:
           type: string
           example: "San Jose"
@@ -3023,6 +2876,10 @@ components:
         copyright:
           type: string
         stats:
+          $ref: "#/components/schemas/TeamStatsStats"
+    TeamStatsStats:
+      properties:
+        records:
           type: array
           items:
             type: object
@@ -3031,8 +2888,7 @@ components:
                 type: object
                 properties:
                   displayName:
-                    type: string
-                    example: "statsSingleSeason"
+                    $ref: "#/components/schemas/EnumStatTypes"
               splits:
                 type: array
                 items:
@@ -3040,121 +2896,9 @@ components:
                   properties:
                     stat:
                       type: object
-                      properties:
-                        gamesPlayed:
-                          anyOf:
-                            type: integer
-                            type: string
-                        wins:
-                          anyOf:
-                            type: integer
-                            type: string
-                        losses:
-                          anyOf:
-                            type: integer
-                            type: string
-                        ot:
-                          anyOf:
-                            type: integer
-                            type: string
-                        pts:
-                          anyOf:
-                            type: integer
-                            type: string
-                        ptPctg:
-                          type: string
-                          example: "60.0"
-                        goalsPerGame:
-                          anyOf:
-                            type: float
-                            type: string
-                        goalsAgainstPerGame:
-                          anyOf:
-                            type: float
-                            type: string
-                        evGGARatio:
-                          anyOf:
-                            type: float
-                            type: string
-                        powerPlayPercentage:
-                          type: string
-                          example: "23.9"
-                        powerPlayGoals:
-                          anyOf:
-                            type: integer
-                            type: string
-                        powerPlayGoalsAgainst:
-                          anyOf:
-                            type: integer
-                            type: string
-                        powerPlayOpportunities:
-                          anyOf:
-                            type: integer
-                            type: string
-                        penaltyKillPercentage:
-                          type: string
-                          example: "84.6"
-                        shotsPerGame:
-                          anyOf:
-                            type: float
-                            type: string
-                        shotsAllowed:
-                          anyOf:
-                            type: float
-                            type: string
-                        winScoreFirst:
-                          anyOf:
-                            type: float
-                            type: string
-                        winOppScoreFirst:
-                          anyOf:
-                            type: float
-                            type: string
-                        winLeadFirstPer:
-                          anyOf:
-                            type: float
-                            type: string
-                        winLeadSecondPer:
-                          anyOf:
-                            type: float
-                            type: string
-                        winOutshootOpp:
-                          anyOf:
-                            type: float
-                            type: string
-                        winOutshotByOpp:
-                          anyOf:
-                            type: float
-                            type: string
-                        faceOffsTaken:
-                          anyOf:
-                            type: integer
-                            type: string
-                        faceOffsWon:
-                          anyOf:
-                            type: integer
-                            type: string
-                        faceOffsLost:
-                          anyOf:
-                            type: integer
-                            type: string
-                        faceOffWinPercentage:
-                          type: string
-                          example: "50.8"
-                        shootingPctg:
-                          type: number
-                          format: float
-                          example: 8.8
-                        savePctg:
-                          type: number
-                          format: float
-                          example: 0.909
-                        shootingPctRank:
-                          type: string
-                          example: "4th"
-                        savePctRank:
-                          type: string
-                          example: "4th"
+                      anyOf:
+                        - $ref: '#/components/schemas/TeamStatsValues'
+                        - $ref: '#/components/schemas/TeamStatsRankings'
                     team:
                       type: object
                       properties:
@@ -3168,6 +2912,167 @@ components:
                           type: string
                           format: uri
                           example: "/api/v1/teams/28"
+    TeamStatsValues:
+      properties:
+        gamesPlayed:
+          type: number
+          example: 55
+        wins:
+          type: number
+          example: 29
+        losses:
+          type: number
+          example: 18
+        ot:
+          type: number
+          example: 8
+        pts:
+          type: number
+          example: 66
+        ptPctg:
+          type: string
+          example: "60.0"
+        goalsPerGame:
+          type: number
+          format: float
+          example: 2.891
+        goalsAgainstPerGame:
+          type: number
+          format: float
+          example: 2.745
+        evGGARatio:
+          type: number
+          format: float
+          example: 0.8532
+        powerPlayPercentage:
+          type: string
+          example: "23.9"
+        powerPlayGoals:
+          type: number
+          example: 44
+        powerPlayGoalsAgainst:
+          type: number
+          example: 26
+        powerPlayOpportunities:
+          type: number
+          example: 184
+        penaltyKillPercentage:
+          type: string
+          example: "84.6"
+        shotsPerGame:
+          type: number
+          format: float
+          example: 32.8
+        shotsAllowed:
+          type: number
+          format: float
+          example: 30.2182
+        winScoreFirst:
+          type: number
+          format: float
+          example: 0.679
+        winOppScoreFirst:
+          type: number
+          format: float
+          example: 0.37
+        winLeadFirstPer:
+          type: number
+          format: float
+          example: 0.85
+        winLeadSecondPer:
+          type: number
+          format: float
+          example: 0.952
+        winOutshootOpp:
+          type: number
+          format: float
+          example: 0.467
+        winOutshotByOpp:
+          type: number
+          format: float
+          example: 0.6
+        faceOffsTaken:
+          type: number
+          example: 3300
+        faceOffsWon:
+          type: number
+          example: 1675
+        faceOffsLost:
+          type: number
+          example: 1625
+        faceOffWinPercentage:
+          type: string
+          example: "50.8"
+        shootingPctg:
+          type: number
+          format: float
+          example: 8.8
+        savePctg:
+          type: number
+          format: float
+          example: 0.909                        
+    TeamStatsRankings:
+      properties:
+        gamesPlayed:
+          type: string
+          example: "1st"
+        wins:
+          type: string
+          example: "2nd"
+        losses:
+          type: string
+          example: "3rd"
+        ot:
+          type: string
+          example: "4th"
+        pts:
+          type: string
+        ptPctg:
+          type: string
+        goalsPerGame:
+          type: string
+        goalsAgainstPerGame:
+          type: string
+        evGGARatio:
+          type: string
+        powerPlayPercentage:
+          type: string
+        powerPlayGoals:
+          type: string
+        powerPlayGoalsAgainst:
+          type: string
+        powerPlayOpportunities:
+          type: string
+        penaltyKillPercentage:
+          type: string
+        shotsPerGame:
+          type: string
+        shotsAllowed:
+          type: string
+        winScoreFirst:
+          type: string
+        winOppScoreFirst:
+          type: string
+        winLeadFirstPer:
+          type: string
+        winLeadSecondPer:
+          type: string
+        winOutshootOpp:
+          type: string
+        winOutshotByOpp:
+          type: string
+        faceOffsTaken:
+          type: string
+        faceOffsWon:
+          type: string
+        faceOffsLost:
+          type: string
+        faceOffWinPercentage:
+          type: string
+        shootingPctRank:
+          type: string
+        savePctRank:
+          type: string
     Venue:
       properties:
         name:

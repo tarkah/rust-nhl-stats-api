@@ -12,14 +12,14 @@
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 #[serde(transparent)]
-pub struct TeamStatsStats {
+pub struct StandingTypes {
     #[serde(rename = "records", skip_serializing_if = "Option::is_none", flatten)]
-    pub records: Option<Vec<crate::models::TeamStatsStatsRecords>>,
+    pub records: Option<Vec<crate::models::StandingTypesRecords>>,
 }
 
-impl TeamStatsStats {
-    pub fn new() -> TeamStatsStats {
-        TeamStatsStats {
+impl StandingTypes {
+    pub fn new() -> StandingTypes {
+        StandingTypes {
             records: None,
         }
     }

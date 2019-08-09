@@ -28,11 +28,11 @@ impl StatsApiClient {
 }
 
 pub trait StatsApi {
-    fn get_stat_types(&self, ) -> Result<Vec<serde_json::Value>, Error>;
+    fn get_stat_types(&self, ) -> Result<crate::models::StatTypes, Error>;
 }
 
 impl StatsApi for StatsApiClient {
-    fn get_stat_types(&self, ) -> Result<Vec<serde_json::Value>, Error> {
+    fn get_stat_types(&self, ) -> Result<crate::models::StatTypes, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 

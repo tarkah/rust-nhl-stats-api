@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## get_stat_types
 
-> Vec<serde_json::Value> get_stat_types()
+> crate::models::StatTypes get_stat_types()
 Get all available NHL statistic types.
 
 ### Parameters
@@ -19,7 +19,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Vec<serde_json::Value>**](serde_json::Value.md)
+[**crate::models::StatTypes**](StatTypes.md)
 
 ### Authorization
 

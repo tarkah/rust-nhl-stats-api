@@ -28,11 +28,11 @@ impl ScheduleApiClient {
 }
 
 pub trait ScheduleApi {
-    fn get_schedule(&self, expand: &str, team_id: &str, start_date: String, end_date: String) -> Result<crate::models::Schedule, Error>;
+    fn get_schedule(&self, expand: crate::models::EnumExpandSchedule, team_id: &str, start_date: String, end_date: String) -> Result<crate::models::Schedule, Error>;
 }
 
 impl ScheduleApi for ScheduleApiClient {
-    fn get_schedule(&self, expand: &str, team_id: &str, start_date: String, end_date: String) -> Result<crate::models::Schedule, Error> {
+    fn get_schedule(&self, expand: crate::models::EnumExpandSchedule, team_id: &str, start_date: String, end_date: String) -> Result<crate::models::Schedule, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 

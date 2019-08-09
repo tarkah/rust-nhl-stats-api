@@ -18,7 +18,7 @@ Get the NHL game schedule.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**expand** | **String** | Expand explanations:   * `schedule.brodcasts` - Shows the broadcasts of the game.   * `schedule.linescore` - Linescore for completed games.   * `schedule.ticket` - Provides the different places to buy tickets for the upcoming games.   * `team.schedule.previous` - Same as above but for the last game played.  |  | 
+**expand** | [**crate::models::EnumExpandSchedule**](.md) | Expand explanations:   * `schedule.brodcasts` - Shows the broadcasts of the game.   * `schedule.linescore` - Linescore for completed games.   * `schedule.ticket` - Provides the different places to buy tickets for the upcoming games.  |  | 
 **team_id** | **String** | Limit results to a specific team. Team ids can be found through the teams endpoint |  | 
 **start_date** | **String** | Start date for the search. |  | 
 **end_date** | **String** | End date for the search. |  | 

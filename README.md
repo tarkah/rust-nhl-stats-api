@@ -17,6 +17,7 @@ Both `reqwest` and `hyper` clients are avaialable by default, and behind feature
 ## Example
 
 ```rust
+use nhl_stats::parameters::*;
 use nhl_stats::sync::configuration::Configuration;
 use nhl_stats::sync::*;
 use std::rc::Rc;
@@ -25,9 +26,10 @@ fn main() -> Result<(), Error> {
     let config = Rc::from(Configuration::default());
     let teams_client = TeamsApiClient::new(config);
 
-    // First parameter is expand={modifier}, this can be left blank
+    // First parameter is expand=, use applicable enum from parameters module
     // Second parameter is season (both years included)
-    let teams = teams_client.get_teams("", "20192020")?;
+    let expand = EnumExpandTeams::TeamRoster;
+    let teams = teams_client.get_teams(expand, "20192020")?;
     for team in teams.teams.unwrap() {
         println!("{:#?}", team);
     }
@@ -94,6 +96,10 @@ All URIs are relative to *https://statsapi.web.nhl.com/api/v1*
  - [DraftProspects](docs/DraftProspects.md)
  - [DraftRounds](docs/DraftRounds.md)
  - [DraftTeam](docs/DraftTeam.md)
+ - [EnumExpandSchedule](docs/EnumExpandSchedule.md)
+ - [EnumExpandTeams](docs/EnumExpandTeams.md)
+ - [EnumStandingTypes](docs/EnumStandingTypes.md)
+ - [EnumStatTypes](docs/EnumStatTypes.md)
  - [Error](docs/Error.md)
  - [Franchise](docs/Franchise.md)
  - [Game](docs/Game.md)
@@ -176,7 +182,6 @@ All URIs are relative to *https://statsapi.web.nhl.com/api/v1*
  - [PlayerStatsSplits](docs/PlayerStatsSplits.md)
  - [PlayerStatsStat](docs/PlayerStatsStat.md)
  - [PlayerStatsStats](docs/PlayerStatsStats.md)
- - [PlayerStatsType](docs/PlayerStatsType.md)
  - [Players](docs/Players.md)
  - [Roster](docs/Roster.md)
  - [RosterPerson](docs/RosterPerson.md)
@@ -192,32 +197,37 @@ All URIs are relative to *https://statsapi.web.nhl.com/api/v1*
  - [ScheduleGameTeamsHome](docs/ScheduleGameTeamsHome.md)
  - [ScheduleGameTeamsHomeLeagueRecord](docs/ScheduleGameTeamsHomeLeagueRecord.md)
  - [ScheduleGameTickets](docs/ScheduleGameTickets.md)
+ - [StandingTypes](docs/StandingTypes.md)
+ - [StandingTypesRecords](docs/StandingTypesRecords.md)
  - [Standings](docs/Standings.md)
  - [StandingsDivision](docs/StandingsDivision.md)
  - [StandingsLeague](docs/StandingsLeague.md)
  - [StandingsRecords](docs/StandingsRecords.md)
  - [StandingsStreak](docs/StandingsStreak.md)
  - [StandingsTeamRecords](docs/StandingsTeamRecords.md)
+ - [StatType](docs/StatType.md)
+ - [StatTypes](docs/StatTypes.md)
  - [Team](docs/Team.md)
- - [TeamNextGameSchedule](docs/TeamNextGameSchedule.md)
- - [TeamNextGameScheduleDates](docs/TeamNextGameScheduleDates.md)
- - [TeamNextGameScheduleGames](docs/TeamNextGameScheduleGames.md)
- - [TeamNextGameScheduleStatus](docs/TeamNextGameScheduleStatus.md)
- - [TeamNextGameScheduleTeams](docs/TeamNextGameScheduleTeams.md)
- - [TeamNextGameScheduleTeamsAway](docs/TeamNextGameScheduleTeamsAway.md)
- - [TeamNextGameScheduleTeamsAwayLeagueRecord](docs/TeamNextGameScheduleTeamsAwayLeagueRecord.md)
- - [TeamNextGameScheduleTeamsAwayTeam](docs/TeamNextGameScheduleTeamsAwayTeam.md)
- - [TeamNextGameScheduleTeamsHome](docs/TeamNextGameScheduleTeamsHome.md)
- - [TeamNextGameScheduleTeamsHomeLeagueRecord](docs/TeamNextGameScheduleTeamsHomeLeagueRecord.md)
  - [TeamRoster](docs/TeamRoster.md)
  - [TeamStats](docs/TeamStats.md)
- - [TeamStatsSplits](docs/TeamStatsSplits.md)
- - [TeamStatsStat](docs/TeamStatsStat.md)
+ - [TeamStatsRankings](docs/TeamStatsRankings.md)
  - [TeamStatsStats](docs/TeamStatsStats.md)
- - [TeamStatsType](docs/TeamStatsType.md)
+ - [TeamStatsStatsRecords](docs/TeamStatsStatsRecords.md)
+ - [TeamStatsStatsSplits](docs/TeamStatsStatsSplits.md)
+ - [TeamStatsStatsType](docs/TeamStatsStatsType.md)
+ - [TeamStatsValues](docs/TeamStatsValues.md)
  - [Teams](docs/Teams.md)
  - [Venue](docs/Venue.md)
  - [VenueTimeZone](docs/VenueTimeZone.md)
+
+
+To get access to the crate's generated documentation, use:
+
+```
+cargo doc --open
+```
+
+## Author
 
 
 

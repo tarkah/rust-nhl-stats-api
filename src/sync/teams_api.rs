@@ -28,14 +28,14 @@ impl TeamsApiClient {
 }
 
 pub trait TeamsApi {
-    fn get_team(&self, id: u32, expand: &str, season: &str) -> Result<crate::models::Team, Error>;
+    fn get_team(&self, id: u32, expand: crate::models::EnumExpandTeams, season: &str) -> Result<crate::models::Team, Error>;
     fn get_team_roster(&self, id: u32, season: &str) -> Result<crate::models::Rosters, Error>;
     fn get_team_stats(&self, id: u32) -> Result<crate::models::TeamStats, Error>;
-    fn get_teams(&self, expand: &str, season: &str) -> Result<crate::models::Teams, Error>;
+    fn get_teams(&self, expand: crate::models::EnumExpandTeams, season: &str) -> Result<crate::models::Teams, Error>;
 }
 
 impl TeamsApi for TeamsApiClient {
-    fn get_team(&self, id: u32, expand: &str, season: &str) -> Result<crate::models::Team, Error> {
+    fn get_team(&self, id: u32, expand: crate::models::EnumExpandTeams, season: &str) -> Result<crate::models::Team, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -89,7 +89,7 @@ impl TeamsApi for TeamsApiClient {
         Ok(client.execute(req)?.error_for_status()?.json()?)
     }
 
-    fn get_teams(&self, expand: &str, season: &str) -> Result<crate::models::Teams, Error> {
+    fn get_teams(&self, expand: crate::models::EnumExpandTeams, season: &str) -> Result<crate::models::Teams, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 

@@ -1,11 +1,10 @@
-# PlayerStatsStats
+# StandingTypes
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**_type** | [***crate::models::StatType**](StatType.md) |  | [optional] 
-**splits** | [**Vec<crate::models::PlayerStatsSplits>**](PlayerStats_splits.md) |  | [optional] 
+**records** | [**Vec<crate::models::StandingTypesRecords>**](StandingTypes_records.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

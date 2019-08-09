@@ -15,7 +15,7 @@ pub struct Roster {
     #[serde(rename = "person", skip_serializing_if = "Option::is_none")]
     pub person: Option<crate::models::RosterPerson>,
     #[serde(rename = "jerseyNumber", skip_serializing_if = "Option::is_none")]
-    pub jersey_number: Option<f32>,
+    pub jersey_number: Option<String>,
     #[serde(rename = "position", skip_serializing_if = "Option::is_none")]
     pub position: Option<crate::models::DraftProspectPrimaryPosition>,
 }

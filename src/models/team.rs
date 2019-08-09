@@ -38,8 +38,12 @@ pub struct Team {
     pub franchise: Option<crate::models::Franchise>,
     #[serde(rename = "roster", skip_serializing_if = "Option::is_none")]
     pub roster: Option<crate::models::TeamRoster>,
+    #[serde(rename = "teamStats", skip_serializing_if = "Option::is_none")]
+    pub team_stats: Option<crate::models::TeamStatsStats>,
+    #[serde(rename = "previousGameSchedule", skip_serializing_if = "Option::is_none")]
+    pub previous_game_schedule: Option<crate::models::Schedule>,
     #[serde(rename = "nextGameSchedule", skip_serializing_if = "Option::is_none")]
-    pub next_game_schedule: Option<crate::models::TeamNextGameSchedule>,
+    pub next_game_schedule: Option<crate::models::Schedule>,
     #[serde(rename = "shortName", skip_serializing_if = "Option::is_none")]
     pub short_name: Option<String>,
     #[serde(rename = "officialSiteUrl", skip_serializing_if = "Option::is_none")]
@@ -66,6 +70,8 @@ impl Team {
             conference: None,
             franchise: None,
             roster: None,
+            team_stats: None,
+            previous_game_schedule: None,
             next_game_schedule: None,
             short_name: None,
             official_site_url: None,

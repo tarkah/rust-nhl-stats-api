@@ -31,14 +31,14 @@ impl<C: hyper::client::Connect> StandingsApiClient<C> {
 }
 
 pub trait StandingsApi {
-    fn get_standing_types(&self, ) -> Box<Future<Item = Vec<serde_json::Value>, Error = Error<serde_json::Value>>>;
+    fn get_standing_types(&self, ) -> Box<Future<Item = crate::models::StandingTypes, Error = Error<serde_json::Value>>>;
     fn get_standings(&self, season: String, date: String) -> Box<Future<Item = crate::models::Standings, Error = Error<serde_json::Value>>>;
-    fn get_standings_by_type(&self, _type: &str) -> Box<Future<Item = crate::models::Standings, Error = Error<serde_json::Value>>>;
+    fn get_standings_by_type(&self, _type: crate::models::EnumStandingTypes, date: String, season: String) -> Box<Future<Item = crate::models::Standings, Error = Error<serde_json::Value>>>;
 }
 
 
 impl<C: hyper::client::Connect>StandingsApi for StandingsApiClient<C> {
-    fn get_standing_types(&self, ) -> Box<Future<Item = Vec<serde_json::Value>, Error = Error<serde_json::Value>>> {
+    fn get_standing_types(&self, ) -> Box<Future<Item = crate::models::StandingTypes, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/standingsTypes".to_string())
             .execute(self.configuration.borrow())
     }
@@ -50,8 +50,10 @@ impl<C: hyper::client::Connect>StandingsApi for StandingsApiClient<C> {
             .execute(self.configuration.borrow())
     }
 
-    fn get_standings_by_type(&self, _type: &str) -> Box<Future<Item = crate::models::Standings, Error = Error<serde_json::Value>>> {
+    fn get_standings_by_type(&self, _type: crate::models::EnumStandingTypes, date: String, season: String) -> Box<Future<Item = crate::models::Standings, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/standings/{type}".to_string())
+            .with_query_param("date".to_string(), date.to_string())
+            .with_query_param("season".to_string(), season.to_string())
             .with_path_param("type".to_string(), _type.to_string())
             .execute(self.configuration.borrow())
     }

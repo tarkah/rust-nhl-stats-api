@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**standings_type** | **String** |  | [optional] 
+**standings_type** | [***crate::models::EnumStandingTypes**](EnumStandingTypes.md) |  | [optional] 
 **league** | [***crate::models::StandingsLeague**](Standings_league.md) |  | [optional] 
 **division** | [***crate::models::StandingsDivision**](Standings_division.md) |  | [optional] 
 **conference** | [***crate::models::DivisionConference**](Division_conference.md) |  | [optional] 

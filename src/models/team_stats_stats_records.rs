@@ -11,16 +11,16 @@
 
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
-pub struct PlayerStatsStats {
+pub struct TeamStatsStatsRecords {
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
-    pub _type: Option<crate::models::StatType>,
+    pub _type: Option<crate::models::TeamStatsStatsType>,
     #[serde(rename = "splits", skip_serializing_if = "Option::is_none")]
-    pub splits: Option<Vec<crate::models::PlayerStatsSplits>>,
+    pub splits: Option<Vec<crate::models::TeamStatsStatsSplits>>,
 }
 
-impl PlayerStatsStats {
-    pub fn new() -> PlayerStatsStats {
-        PlayerStatsStats {
+impl TeamStatsStatsRecords {
+    pub fn new() -> TeamStatsStatsRecords {
+        TeamStatsStatsRecords {
             _type: None,
             splits: None,
         }

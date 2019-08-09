@@ -31,12 +31,12 @@ impl<C: hyper::client::Connect> StatsApiClient<C> {
 }
 
 pub trait StatsApi {
-    fn get_stat_types(&self, ) -> Box<Future<Item = Vec<serde_json::Value>, Error = Error<serde_json::Value>>>;
+    fn get_stat_types(&self, ) -> Box<Future<Item = crate::models::StatTypes, Error = Error<serde_json::Value>>>;
 }
 
 
 impl<C: hyper::client::Connect>StatsApi for StatsApiClient<C> {
-    fn get_stat_types(&self, ) -> Box<Future<Item = Vec<serde_json::Value>, Error = Error<serde_json::Value>>> {
+    fn get_stat_types(&self, ) -> Box<Future<Item = crate::models::StatTypes, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/statTypes".to_string())
             .execute(self.configuration.borrow())
     }
